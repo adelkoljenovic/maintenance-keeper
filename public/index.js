@@ -4,7 +4,6 @@ var HomePage = {
   template: "#home-page",
   data: function() {
     return {
-      message: "Welcome to Vue.js!",
       newSearch: "",
       // vehicle: {count: "", message: "", search_criteria: "", results: ""}
       vehicle: [],
