@@ -4,11 +4,30 @@ var HomePage = {
   template: "#home-page",
   data: function() {
     return {
-      message: "Welcome to Vue.js!"
+      message: "Welcome to Vue.js!",
+      newSearch: "",
+      // vehicle: {count: "", message: "", search_criteria: "", results: ""}
+      vehicle: [],
+      results: false
     };
   },
   created: function() {},
-  methods: {},
+  methods: {
+    newVehicleSearch: function() {
+      console.log('sending search to api...');
+      // var params = {
+      //   vin: this.newSearch
+      // // };
+      // console.log(this.newSearch);
+      axios.get('/api/vehicles?vinkey=' + this.newSearch).then(function(response) {
+        console.log('inside callback...');
+        this.vehicle = response.data;
+        this.results = true;
+        console.log(response.data);
+      }.bind(this));
+    } 
+  },
+
   computed: {}
 };
 
