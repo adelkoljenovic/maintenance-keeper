@@ -7,7 +7,8 @@ var HomePage = {
       newSearch: "",
       // vehicle: {count: "", message: "", search_criteria: "", results: ""}
       vehicle: [],
-      results: false
+      results: false,
+      info: []
     };
   },
   created: function() {},
@@ -24,7 +25,19 @@ var HomePage = {
         this.results = true;
         console.log(response.data);
       }.bind(this));
-    } 
+    },
+    select: function(info) {
+      var params = {
+        year: this.vehicle.results[0].ModelYear,
+        make: this.vehicle.results[0].Make,
+        model: this.vehicle.results[0].Model,
+        vin: this.vehicle.results[0].VIN
+      };
+      // console.log("in the select function");
+      axios.post('/api/vehicles', params).then(function(response) {
+        console.log(response.data);
+      }.bind(this));
+    }    
   },
 
   computed: {}

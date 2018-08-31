@@ -11,6 +11,18 @@ class Api::VehiclesController < ApplicationController
 
     render "index.json.jbuilder"
   end
+
+  def create
+    @vehicle = Vehicle.new(
+      vin: params[:vin],
+      year: params[:year],
+      make: params[:make],
+      model: params[:model],
+      user_id: current_user.id
+      ) 
+    @vehicle.save!
+    render "show.json.jbuilder" 
+  end
 end
 
 # #{params[:vin]}
