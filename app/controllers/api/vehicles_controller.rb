@@ -1,15 +1,12 @@
 class Api::VehiclesController < ApplicationController
-  def index
-    # @vehicle = Unirest.get(
-    #   "https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValues/#{params[:vin]}?format=json"
-    # ).body
-    # p params
+  def search
     response = Unirest.get("https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValues/#{params[:vinkey]}?format=json")
     @vehicle = response.body
-    p response.body
-    p params[:vin]
-
     render "index.json.jbuilder"
+  end
+
+  def index
+    
   end
 
   def create

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     patch "/records/:id" => "records#update"
     delete "/records/:id" => "records#destroy"
     #vehicles
+    get "/vehicles/search" => "vehicles#search"
     get "/vehicles" => "vehicles#index"
     post "/vehicles" => "vehicles#create"
     delete "/vehicles/:id" => "vehicles#destroy"

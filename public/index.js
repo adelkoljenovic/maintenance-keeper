@@ -19,7 +19,7 @@ var HomePage = {
       //   vin: this.newSearch
       // // };
       // console.log(this.newSearch);
-      axios.get('/api/vehicles?vinkey=' + this.newSearch).then(function(response) {
+      axios.get('/api/vehicles/search?vinkey=' + this.newSearch).then(function(response) {
         console.log('inside callback...');
         this.vehicle = response.data;
         this.results = true;
