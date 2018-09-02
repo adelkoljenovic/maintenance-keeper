@@ -185,6 +185,42 @@ var ViewShopsPage = {
   computed: {}
 };
 
+var AddMaintenanceRecordPage = {
+  template: "#add-maintenance-record-page",
+  data: function() {
+    return {
+      vehicleId: "",
+      maintenanceType: "",
+      odometer: "",
+      date: "",
+      shopId: "",
+      errors: []
+    };
+  },
+  methods: {
+    submit: function() {
+      var params = {
+        vehicle_id: this.vehicleId,
+        maintenance_type: this.maintenanceType,
+        odometer: this.odometer,
+        date: this.date,
+        shop_id: this.shopId
+        // what is the errors function doing for this create; errors code was taken from sign up pag? --- do I need?
+      };
+      axios
+        .post("/api/records", params)
+        .then(function(response) {
+          router.push("/");
+        })
+        .catch(
+          function(error) {
+            this.errors = error.response.data.errors;
+          }.bind(this)
+        );
+    }
+  }
+};
+
 var router = new VueRouter({
   routes: [
     { path: "/", component: HomePage },
@@ -193,7 +229,8 @@ var router = new VueRouter({
     { path: "/logout", component: LogoutPage },
     { path: "/vehicles/view", component: ViewVehiclesPage },
     { path: "/shops/add", component: AddShopsPage },
-    { path: "/shops/view", component: ViewShopsPage }
+    { path: "/shops/view", component: ViewShopsPage },
+    { path: "/records/add", component: AddMaintenanceRecordPage },
   ],
   scrollBehavior: function(to, from, savedPosition) {
     return { x: 0, y: 0 };

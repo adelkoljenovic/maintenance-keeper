@@ -1,4 +1,19 @@
 class Api::RecordsController < ApplicationController
+  def create
+    @record = Record.new(
+      vehicle_id: params[:vehicle_id],
+      maintenance_type: params[:maintenance_type],
+      current_mileage: params[:odometer],
+      date: params[:date],
+      shop_id: params[:shop_id],
+      user_id: current_user.id
+    )
+    if @record.save!
+      render "show.json.jbuilder"
+    else
+      render json: {errors: @record.errors.full_messages}, status: :unprocessable_entity
+    end
+  end
 end
 
 

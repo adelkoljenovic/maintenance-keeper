@@ -17,6 +17,7 @@
   <a href="/#/vehicles/view">View All Vehicles</a>
   <a href="/#/shops/add">Add Shop</a>
   <a href="/#/shops/view">View All Shops</a>
+  <a href="/#/records/add">Add Maintenance Record</a>
   <div id="vue-app">
 
 
@@ -149,6 +150,30 @@
       <p class="shop-telephone-number">Telephone #: {{ shop.telephone_number }}</p>
       <p class="shop-notes">Special Notes: {{ shop.notes }}</p>
       <hr>
+    </div>
+  </div>
+</template>
+
+<template id="add-maintenance-record-page">
+  <div class="vue-component">
+    <div class="container">
+      <h1>Add your maintenance record here:</h1>
+      <ul>
+        <li class="text-danger" v-for="error in errors">{{ error }}</li>
+      </ul>
+      <div class="form-group">
+        <label>Vehicle ID:</label> 
+        <input type="text" class="form-control" v-model="vehicleId">
+        <label>Maintenance Type:</label> 
+        <input type="text" class="form-control" v-model="maintenanceType">
+        <label>Current Mileage/Odometer Reading:</label> 
+        <input type="text" class="form-control" v-model="odometer">
+        <label>Date:</label> 
+        <input type="text" class="form-control" v-model="date">
+        <label>Shop ID:</label> 
+        <input type="text" class="form-control" v-model="shopId">
+      </div>
+      <button class="btn btn-primary" v-on:click="submit()">Submit</button>
     </div>
   </div>
 </template>
