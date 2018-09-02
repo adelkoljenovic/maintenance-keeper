@@ -5,7 +5,6 @@ var HomePage = {
   data: function() {
     return {
       newSearch: "",
-      // vehicle: {count: "", message: "", search_criteria: "", results: ""}
       vehicle: [],
       results: false,
       info: []
@@ -15,10 +14,6 @@ var HomePage = {
   methods: {
     newVehicleSearch: function() {
       console.log('sending search to api...');
-      // var params = {
-      //   vin: this.newSearch
-      // // };
-      // console.log(this.newSearch);
       axios.get('/api/vehicles/search?vinkey=' + this.newSearch).then(function(response) {
         console.log('inside callback...');
         this.vehicle = response.data;
@@ -120,12 +115,68 @@ var LogoutPage = {
   }
 };
 
+var ViewVehiclesPage = {
+  template: "#view-vehicles-page",
+  data: function() {
+    return {
+      allVehicles: []
+    };
+  },
+  created: function() {
+    console.log("in the created function of view vehicles page");
+    axios.get('/api/vehicles').then(function(response) {
+      console.log(response.data);
+      this.allVehicles = response.data;
+    }.bind(this)); 
+  },
+  computed: {}
+};
+
+var AddShopsPage = {
+  template: "#add-shops-page",
+  data: function() {
+    return {
+      shopName: "",
+      address: "",
+      contactName: "",
+      telephoneNumber: "",
+      specialNotes: "",
+      errors: []
+    };
+  },
+  methods: {
+    submit: function() {
+      var params = {
+        shop_name: this.shopName,
+        address: this.address,
+        contact_name: this.contactName,
+        telephone_number: this.telephoneNumber,
+        special_notes: this.specialNotes
+        // what is the errors function doing for this create; errors code was taken from sign up pag? --- do I need?
+      };
+      axios
+        .post("/api/shops", params)
+        .then(function(response) {
+          router.push("/");
+        })
+        .catch(
+          function(error) {
+            this.errors = error.response.data.errors;
+          }.bind(this)
+        );
+    }
+  }
+};
+
+
 var router = new VueRouter({
   routes: [
     { path: "/", component: HomePage },
     { path: "/signup", component: SignupPage },
     { path: "/login", component: LoginPage },
-    { path: "/logout", component: LogoutPage }
+    { path: "/logout", component: LogoutPage },
+    { path: "/vehicles/view", component: ViewVehiclesPage },
+    { path: "/shops/add", component: AddShopsPage }
   ],
   scrollBehavior: function(to, from, savedPosition) {
     return { x: 0, y: 0 };

@@ -9,10 +9,11 @@ Rails.application.routes.draw do
     patch "/records/:id" => "records#update"
     delete "/records/:id" => "records#destroy"
     #vehicles
-    get "/vehicles/search" => "vehicles#search"
-    get "/vehicles" => "vehicles#index"
-    post "/vehicles" => "vehicles#create"
-    delete "/vehicles/:id" => "vehicles#destroy"
+
+    get "/vehicles" => "vehicles#index" #done; tested
+    post "/vehicles" => "vehicles#create" #done; tested
+    delete "/vehicles/:id" => "vehicles#destroy" #will not do due to time
+    get "/vehicles/search" => "vehicles#search" #done; tested
     #shops
     get "/shops" => "shops#index"
     post "/shops" => "shops#create"
