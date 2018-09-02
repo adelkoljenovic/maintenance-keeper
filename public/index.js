@@ -1,43 +1,5 @@
 /* global Vue, VueRouter, axios */
 
-var HomePage = {
-  template: "#home-page",
-  data: function() {
-    return {
-      newSearch: "",
-      vehicle: [],
-      results: false,
-      info: []
-    };
-  },
-  created: function() {},
-  methods: {
-    newVehicleSearch: function() {
-      console.log('sending search to api...');
-      axios.get('/api/vehicles/search?vinkey=' + this.newSearch).then(function(response) {
-        console.log('inside callback...');
-        this.vehicle = response.data;
-        this.results = true;
-        console.log(response.data);
-      }.bind(this));
-    },
-    select: function(info) {
-      var params = {
-        year: this.vehicle.results[0].ModelYear,
-        make: this.vehicle.results[0].Make,
-        model: this.vehicle.results[0].Model,
-        vin: this.vehicle.results[0].VIN
-      };
-      // console.log("in the select function");
-      axios.post('/api/vehicles', params).then(function(response) {
-        console.log(response.data);
-      }.bind(this));
-    }    
-  },
-
-  computed: {}
-};
-
 var SignupPage = {
   template: "#signup-page",
   data: function() {
@@ -113,6 +75,57 @@ var LogoutPage = {
     localStorage.removeItem("jwt");
     router.push("/");
   }
+};
+
+var HomePage = {
+  template: "#home-page",
+  data: function() {
+    return {
+      message: "Welcome to Maintanence Keeper"
+    };
+  },
+  created: function() {},
+  methods: {},
+  computed: {}
+};
+
+var AddVehiclesPage = {
+  template: "#add-vehicles-page",
+  data: function() {
+    return {
+      newSearch: "",
+      vehicle: [],
+      results: false,
+      info: []
+    };
+  },
+  created: function() {},
+  methods: {
+    newVehicleSearch: function() {
+      console.log('sending search to api...');
+      axios.get('/api/vehicles/search?vinkey=' + this.newSearch).then(function(response) {
+        console.log('inside callback...');
+        this.vehicle = response.data;
+        this.results = true;
+        console.log(response.data);
+      }.bind(this));
+    },
+    select: function(info) {
+      var params = {
+        year: this.vehicle.results[0].ModelYear,
+        make: this.vehicle.results[0].Make,
+        model: this.vehicle.results[0].Model,
+        vin: this.vehicle.results[0].VIN
+      };
+      // console.log("in the select function");
+      axios.post('/api/vehicles', params).then(function(response) {
+        console.log(response.data);
+        router.push("/records/new");
+      }.bind(this));
+    }    
+  },
+
+  computed: {}
 };
 
 var ViewVehiclesPage = {
@@ -261,6 +274,7 @@ var router = new VueRouter({
     { path: "/signup", component: SignupPage },
     { path: "/login", component: LoginPage },
     { path: "/logout", component: LogoutPage },
+    { path: "/vehicles/new", component: AddVehiclesPage },
     { path: "/vehicles", component: ViewVehiclesPage },
     { path: "/shops/new", component: AddShopsPage },
     { path: "/shops", component: ViewShopsPage },

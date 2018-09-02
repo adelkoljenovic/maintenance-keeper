@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # verb "/urls" => "namespace/controllers#action"
   namespace :api do
     #records
-    get "/records" => "records#index"
+    get "/records" => "records#index" #done; tested
     post "/records" => "records#create" #done; tested
     get "/records/:id" => "records#show"
     patch "/records/:id" => "records#update"

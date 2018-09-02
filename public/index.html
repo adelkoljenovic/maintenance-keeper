@@ -14,6 +14,7 @@
   <a href="/#/signup">Signup</a>
   <a href="/#/login">Login</a>
   <a href="/#/logout">Logout</a>
+  <a href="/#/vehicles/new">Add Vehicle</a>
   <a href="/#/vehicles">View All Vehicles</a>
   <a href="/#/shops/new">Add Shop</a>
   <a href="/#/shops">View All Shops</a>
@@ -30,23 +31,6 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </body>
 </html>
-
-<template id="home-page">
-  <div class="vue-component">
-
-    Search for Yr, Make, Model using VIN #: <input placeholder="type VIN here" v-model='newSearch'>
-    <button v-on:click="newVehicleSearch()">Search</button>
-
-
-    <div v-if="results">
-      <p>Year: {{ vehicle.results[0].ModelYear }}</p>
-      <p>Make: {{ vehicle.results[0].Make }}</p>
-      <p>Model: {{ vehicle.results[0].Model }}</p>
-      <p>VIN: {{ vehicle.results[0].VIN }}</p>
-    </div>
-    <button class="btn btn-primary" v-on:click="select(info)">Add This Car</button>
-  </div>
-</template>
 
 <template id="signup-page">
   <div class="vue-component">
@@ -101,6 +85,31 @@
       <button class="btn btn-primary" v-on:click="submit()">Submit</button>
     </div>
 
+  </div>
+</template>
+
+<template id="home-page">
+  <div class="vue-component">
+
+    <h1>{{ message }}</h1>
+
+  </div>
+</template>
+
+<template id="add-vehicles-page">
+  <div class="vue-component">
+
+    Search for Yr, Make, Model using VIN #: <input placeholder="type VIN here" v-model='newSearch'>
+    <button v-on:click="newVehicleSearch()">Search</button>
+
+
+    <div v-if="results">
+      <p>Year: {{ vehicle.results[0].ModelYear }}</p>
+      <p>Make: {{ vehicle.results[0].Make }}</p>
+      <p>Model: {{ vehicle.results[0].Model }}</p>
+      <p>VIN: {{ vehicle.results[0].VIN }}</p>
+    </div>
+    <button class="btn btn-primary" v-on:click="select(info)">Add This Car</button>
   </div>
 </template>
 
