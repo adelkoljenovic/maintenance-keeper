@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_02_144737) do
+ActiveRecord::Schema.define(version: 2018_09_02_210909) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2018_09_02_144737) do
     t.string "vehicle_id"
     t.string "maintenance_type"
     t.string "current_mileage"
-    t.integer "date"
+    t.string "date"
     t.string "shop_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

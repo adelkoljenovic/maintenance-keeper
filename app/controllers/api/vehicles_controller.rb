@@ -6,8 +6,12 @@ class Api::VehiclesController < ApplicationController
   end
 
   def index
-    @vehicles = Vehicle.all
-    render "index.json.jbuilder"
+    if current_user
+      @vehicles = current_user.vehicles
+      render "index.json.jbuilder"
+    else
+      render json: {message: "You are not authorized to view this page, please sign in or create an account"}
+    end
   end
 
   def create

@@ -1,4 +1,13 @@
 class Api::RecordsController < ApplicationController
+  def index
+    if current_user
+      @records = current_user.records
+      render "index.json.jbuilder"
+    else
+      render json: {message: "You are not authorized to view this page, please sign in or create an account"}
+    end
+  end
+
   def create
     @record = Record.new(
       vehicle_id: params[:vehicle_id],

@@ -238,16 +238,34 @@ var AddMaintenanceRecordPage = {
   }
 };
 
+var ViewRecordsPage = {
+  template: "#view-records-page",
+  data: function() {
+    return {
+      allRecords: []
+    };
+  },
+  created: function() {
+    console.log("in the created function of view records page");
+    axios.get('/api/records').then(function(response) {
+      console.log(response.data);
+      this.allRecords = response.data;
+    }.bind(this)); 
+  },
+  computed: {}
+};
+
 var router = new VueRouter({
   routes: [
     { path: "/", component: HomePage },
     { path: "/signup", component: SignupPage },
     { path: "/login", component: LoginPage },
     { path: "/logout", component: LogoutPage },
-    { path: "/vehicles/view", component: ViewVehiclesPage },
-    { path: "/shops/add", component: AddShopsPage },
-    { path: "/shops/view", component: ViewShopsPage },
-    { path: "/records/add", component: AddMaintenanceRecordPage },
+    { path: "/vehicles", component: ViewVehiclesPage },
+    { path: "/shops/new", component: AddShopsPage },
+    { path: "/shops", component: ViewShopsPage },
+    { path: "/records/new", component: AddMaintenanceRecordPage },
+    { path: "/records", component: ViewRecordsPage },
   ],
   scrollBehavior: function(to, from, savedPosition) {
     return { x: 0, y: 0 };

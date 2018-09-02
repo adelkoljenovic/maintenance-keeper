@@ -14,10 +14,11 @@
   <a href="/#/signup">Signup</a>
   <a href="/#/login">Login</a>
   <a href="/#/logout">Logout</a>
-  <a href="/#/vehicles/view">View All Vehicles</a>
-  <a href="/#/shops/add">Add Shop</a>
-  <a href="/#/shops/view">View All Shops</a>
-  <a href="/#/records/add">Add Maintenance Record</a>
+  <a href="/#/vehicles">View All Vehicles</a>
+  <a href="/#/shops/new">Add Shop</a>
+  <a href="/#/shops">View All Shops</a>
+  <a href="/#/records/new">Add Maintenance Record</a>
+  <a href="/#/records">View All Maintenance Records</a>
   <div id="vue-app">
 
 
@@ -197,6 +198,20 @@
           </select>
       </div>
       <button class="btn btn-primary" v-on:click="submit()">Submit</button>
+    </div>
+  </div>
+</template>
+
+<template id="view-records-page">
+  <div class="vue-component">
+    <h1>View All Your Records</h1>
+    <div v-for="record in allRecords">
+      <p class="record-name">Vehicle: {{ record.vehicle.year }} {{ record.vehicle.make }} {{ record.vehicle.model }}</p>
+      <p class="record-address">Maintenance Type: {{ record.maintenance_type }}</p>
+      <p class="record-contact-name">Odometer: {{ record.current_mileage }}</p>
+      <p class="record-telephone-number">Service Date: {{ record.date }}</p>
+      <p class="record-notes">Shop: {{ record.shop.name }}, {{ record.shop.address }}</p>
+      <hr>
     </div>
   </div>
 </template>

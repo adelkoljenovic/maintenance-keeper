@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   namespace :api do
     #records
     get "/records" => "records#index"
-    post "/records" => "records#create"
+    post "/records" => "records#create" #done; tested
     get "/records/:id" => "records#show"
     patch "/records/:id" => "records#update"
     delete "/records/:id" => "records#destroy"

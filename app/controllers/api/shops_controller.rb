@@ -1,8 +1,11 @@
 class Api::ShopsController < ApplicationController
-
   def index
-    @shops = Shop.all
-    render "index.json.jbuilder"
+    if current_user
+      @shops = current_user.shops
+      render "index.json.jbuilder"
+    else
+      render json: {message: "You are not authorized to view this page, please sign in or create an account"}
+    end
   end
 
   def create

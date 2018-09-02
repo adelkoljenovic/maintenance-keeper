@@ -1,5 +1,5 @@
 class Record < ApplicationRecord
-  has_many :shops
-  has_many :vehicles
+  belongs_to :shop
+  belongs_to :vehicle
   belongs_to :user
 end
