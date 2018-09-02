@@ -194,9 +194,25 @@ var AddMaintenanceRecordPage = {
       odometer: "",
       date: "",
       shopId: "",
+      vehicles: [],
+      shops: [],
       errors: []
     };
   },
+
+  created: function() {
+    console.log("in the created function of add maint rec pg for vehicles info");
+    axios.get('/api/vehicles').then(function(response) {
+      console.log(response.data);
+      this.vehicles = response.data;
+    }.bind(this)); 
+    console.log("in the created function of add maint rec pg for shops info");
+    axios.get('/api/shops').then(function(response) {
+      console.log(response.data);
+      this.shops = response.data;
+    }.bind(this)); 
+  },
+
   methods: {
     submit: function() {
       var params = {
