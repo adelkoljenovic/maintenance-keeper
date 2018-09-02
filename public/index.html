@@ -162,16 +162,39 @@
         <li class="text-danger" v-for="error in errors">{{ error }}</li>
       </ul>
       <div class="form-group">
-        <label>Vehicle ID:</label> 
-        <input type="text" class="form-control" v-model="vehicleId">
+        <label>Select Vehicle:</label>
+          <select v-model="vehicleId">
+            <option v-for="vehicle in vehicles"> {{ vehicle.id }} {{ vehicle.year }} {{ vehicle.make }} {{ vehicle.model }} {{ vehicle.vin }} </option>
+          </select>
         <label>Maintenance Type:</label> 
-        <input type="text" class="form-control" v-model="maintenanceType">
+          <select v-model="maintenanceType">
+            <option>Preventative Maintenance: Oil Change</option>
+            <option>Preventative Maintenance: Tire Rotation</option>
+            <option>Preventative Maintenance: Wheel Alignment</option>
+            <option>Preventative Maintenance: Fluids (antifreeze, power steering, coolant, wiper)</option>
+            <option>Preventative Maintenance: Timing Belt</option>
+            <option>Preventative Maintenance: Battery</option>
+            <option>Preventative Maintenance: Windshield Wipers</option>
+            <option>Preventative Maintenance: Tires</option>
+            <option>Preventative Maintenance: Tire Pressure/Tire Patch</option>
+            <option>Preventative Maintenance: Engine Air Filter</option>
+            <option>Preventative Maintenance: Cabin Air Filter</option>
+            <option>Preventative Maintenance: Spark Plugs</option>
+            <option>Body Damage: Any</option>
+            <option>Regulatory Compliance: Inspection</option>
+            <option>Regulatory Compliance: Registration/Plates</option>
+            <option>Cleaning: Interior/Exterior Car Wash</option>
+            <option>Cleaning: Detail</option>
+            <option>Safety: Manufacturer Recall</option>
+          </select>
         <label>Current Mileage/Odometer Reading:</label> 
         <input type="text" class="form-control" v-model="odometer">
         <label>Date:</label> 
         <input type="text" class="form-control" v-model="date">
-        <label>Shop ID:</label> 
-        <input type="text" class="form-control" v-model="shopId">
+        <label>Select Shop:</label>
+          <select v-model="shopId">
+            <option v-for="shop in shops"> {{ shop.id }} {{ shop.name }}, {{ shop.address }} </option>
+          </select>
       </div>
       <button class="btn btn-primary" v-on:click="submit()">Submit</button>
     </div>

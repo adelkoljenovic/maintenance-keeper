@@ -215,12 +215,13 @@ var AddMaintenanceRecordPage = {
 
   methods: {
     submit: function() {
+      console.log(this.vehicleId);
       var params = {
-        vehicle_id: this.vehicleId,
+        vehicle_id: this.vehicleId.split(" ")[0],
         maintenance_type: this.maintenanceType,
         odometer: this.odometer,
         date: this.date,
-        shop_id: this.shopId
+        shop_id: this.shopId.split(" ")[0]
         // what is the errors function doing for this create; errors code was taken from sign up pag? --- do I need?
       };
       axios
