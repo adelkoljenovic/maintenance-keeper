@@ -168,6 +168,22 @@ var AddShopsPage = {
   }
 };
 
+var ViewShopsPage = {
+  template: "#view-shops-page",
+  data: function() {
+    return {
+      allShops: []
+    };
+  },
+  created: function() {
+    console.log("in the created function of view shops page");
+    axios.get('/api/shops').then(function(response) {
+      console.log(response.data);
+      this.allShops = response.data;
+    }.bind(this)); 
+  },
+  computed: {}
+};
 
 var router = new VueRouter({
   routes: [
@@ -176,7 +192,8 @@ var router = new VueRouter({
     { path: "/login", component: LoginPage },
     { path: "/logout", component: LogoutPage },
     { path: "/vehicles/view", component: ViewVehiclesPage },
-    { path: "/shops/add", component: AddShopsPage }
+    { path: "/shops/add", component: AddShopsPage },
+    { path: "/shops/view", component: ViewShopsPage }
   ],
   scrollBehavior: function(to, from, savedPosition) {
     return { x: 0, y: 0 };

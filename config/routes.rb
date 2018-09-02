@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     get "/vehicles/search" => "vehicles#search" #done; tested
     #shops
     get "/shops" => "shops#index"
-    post "/shops" => "shops#create"
+    post "/shops" => "shops#create" #done; tested
     get "/shops/:id" => "shops#show"
     patch "/shops/:id" => "shops#update"
     delete "/shops/:id" => "shops#destroy"

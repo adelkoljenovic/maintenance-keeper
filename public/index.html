@@ -16,6 +16,7 @@
   <a href="/#/logout">Logout</a>
   <a href="/#/vehicles/view">View All Vehicles</a>
   <a href="/#/shops/add">Add Shop</a>
+  <a href="/#/shops/view">View All Shops</a>
   <div id="vue-app">
 
 
@@ -105,10 +106,10 @@
   <div class="vue-component">
     <h1>View All Your Vehicles</h1>
     <div v-for="vehicle in allVehicles">
-      <p class="vehicle-id">VIN #: {{ vehicle.vin }}</p>
-      <p class="vehicle-id">Year: {{ vehicle.year }}</p>
-      <p class="vehicle-id">Make: {{ vehicle.make }}</p>
-      <p class="vehicle-id">Model: {{ vehicle.model }}</p>
+      <p class="vehicle-vin">VIN #: {{ vehicle.vin }}</p>
+      <p class="vehicle-year">Year: {{ vehicle.year }}</p>
+      <p class="vehicle-make">Make: {{ vehicle.make }}</p>
+      <p class="vehicle-model">Model: {{ vehicle.model }}</p>
       <hr>
     </div>
   </div>
@@ -137,3 +138,18 @@
     </div>
   </div>
 </template>
+
+<template id="view-shops-page">
+  <div class="vue-component">
+    <h1>View All Your Shops</h1>
+    <div v-for="shop in allShops">
+      <p class="shop-name">Shop Name: {{ shop.name }}</p>
+      <p class="shop-address">Address: {{ shop.address }}</p>
+      <p class="shop-contact-name">Contact Name: {{ shop.contact_name }}</p>
+      <p class="shop-telephone-number">Telephone #: {{ shop.telephone_number }}</p>
+      <p class="shop-notes">Special Notes: {{ shop.notes }}</p>
+      <hr>
+    </div>
+  </div>
+</template>
+
