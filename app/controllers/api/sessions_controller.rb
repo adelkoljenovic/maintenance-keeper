@@ -1,6 +1,11 @@
 class Api::SessionsController < ApplicationController
   def create
+    p "testing auth"
     user = User.find_by(email: params[:email])
+    p user
+    p params
+    p user.authenticate
+
     if user && user.authenticate(params[:password])
       jwt = JWT.encode(
         {
